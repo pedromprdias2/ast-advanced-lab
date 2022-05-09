@@ -1,0 +1,23 @@
+Copy Copy to clipboard
+
+name: Checkmarx AST Scan
+on:
+  push:
+    branches:
+      - main
+      - master
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkmarx AST CLI Action
+        uses: checkmarx/ast-github-action@main #Github Action version
+        with:
+          project_name: pedroTeste
+          cx_tenant: cx_pm_ast_ori_james_brotsos_tenant
+          base_uri: https://iam.checkmarx.net/auth/admin/cx_pm_ast_ori_james_brotsos_tenant/console/#/realms/cx_pm_ast_ori_james_brotsos_tenant/clients/3449e5a9-bbb4-4811-84ff-295a717f3242
+          cx_client_id: ${{ secrets.CLIENT_ID }}
+          cx_client_secret: ${{ secrets.SECRET }}
